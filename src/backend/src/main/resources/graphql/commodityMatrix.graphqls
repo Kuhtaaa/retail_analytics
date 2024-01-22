@@ -1,0 +1,29 @@
+extend type Query {
+    commodityMatrix: CommodityMatrixQueries
+}
+
+extend type Mutation {
+    commodityMatrix: CommodityMatrixMutations
+}
+
+type CommodityMatrixQueries {
+    getAllCommodityMatrices : [CommodityMatrix!]!
+    getCommodityMatrixById (id : String) : CommodityMatrix!
+}
+
+type CommodityMatrixMutations {
+    createCommodityMatrix(
+        skuName : String,
+        groupId : String
+    ) : Boolean
+
+    updateCommodityMatrix(
+        skuId : String,
+        skuName : String,
+        groupId : String
+    ) : Boolean
+
+    deleteCommodityMatrix(
+        skuId : String
+    ) : Boolean
+}

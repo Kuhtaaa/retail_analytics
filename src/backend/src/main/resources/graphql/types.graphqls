@@ -1,0 +1,59 @@
+type Card {
+    customerCardId : String!
+    customerId : String!
+}
+
+type Check {
+    transactionId : String!
+    skuId : String!
+    skuAmount : String!
+    skuSumm : String!
+    skuSummPaid : String!
+    skuDiscount : String!
+}
+
+type CommodityMatrix {
+    skuId : String!
+    skuName : String!
+    groupId : String!
+}
+
+type DateOfAnalysisFormation {
+    id : String!
+    analysisFormation : String!
+}
+
+type PersonalInformation {
+    customerId : String!
+    customerName : String!
+    customerSurname : String!
+    customerPrimaryEmail : String!
+    customerPrimaryPhone : String!
+}
+
+type SkuGroup {
+    groupId : String!
+    groupName : String!
+}
+
+type Store {
+    transactionStoreId : String!
+    skuId : String!
+    skuPurchasePrice : String!
+    skuRetailPrice : String!
+}
+
+type Transaction {
+    transactionId : String!
+    customerCardId  : String!
+    transactionSumm : String!
+    transactionDatetime : String!
+    transactionStoreId : String!
+}
+
+type User {
+    id : String!
+    email  : String!
+    name : String!
+    username : String!
+}

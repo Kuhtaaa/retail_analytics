@@ -1,0 +1,9 @@
+extend type Query {
+    user: UserQueries
+}
+
+type UserQueries {
+    getCurrentUserRoles : [String!]!
+    loadUserByUsername (userNameOrEmail : String) : User!
+    isAdmin : Boolean!
+}

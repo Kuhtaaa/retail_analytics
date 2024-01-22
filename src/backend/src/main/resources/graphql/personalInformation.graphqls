@@ -1,0 +1,33 @@
+extend type Query {
+    personalInformation: PersonalInformationQueries
+}
+
+extend type Mutation {
+    personalInformation: PersonalInformationMutations
+}
+
+type PersonalInformationQueries {
+    getAllPersonalInformation : [PersonalInformation!]!
+    getPersonalInformationById (id : String) : PersonalInformation!
+}
+
+type PersonalInformationMutations {
+    createPersonalInformation(
+        customerName : String
+        customerSurname : String
+        customerPrimaryEmail : String
+        customerPrimaryPhone : String
+    ) : Boolean
+    
+    updatePersonalInformation(
+        customerId : String
+        customerName : String
+        customerSurname : String
+        customerPrimaryEmail : String
+        customerPrimaryPhone : String
+    ) : Boolean
+    
+    deletePersonalInformation(
+        customerId : String
+    ) : Boolean
+}

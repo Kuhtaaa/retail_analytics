@@ -1,0 +1,18 @@
+extend type Query {
+    card: CardQueries
+}
+
+extend type Mutation {
+    card: CardMutations
+}
+
+type CardQueries {
+    getAllCards : [Card!]!
+    getCardById (id : String) : Card!
+}
+
+type CardMutations {
+    createCard(customerId : String) : Boolean
+    updateCard(customerCardId : String, customerId : String) : Boolean
+    deleteCard(customerCardId : String) : Boolean
+}

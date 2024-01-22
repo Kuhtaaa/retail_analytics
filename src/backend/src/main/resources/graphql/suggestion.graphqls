@@ -1,0 +1,66 @@
+extend type Query {
+    suggestion: SuggestionQueries
+}
+
+type SuggestionQueries {
+
+    # Формирование персональных предложений, ориентированных на рост среднего чека
+    # Передать: workMode, startDate, endDate, numberTransactions, coefficientIncrease, maxChurnIndex,
+    #           maxShareTransactionsDiscount, acceptableMarginShare
+    # Вернет: customerId, requiredCheckMeasure, offerGroup, maxDiscountDepth
+    formationOfAverageTicketGrowth(suggestionInput: SuggestionInput): [Suggestion]!
+
+    # Формирование персональных предложений, ориентированных на рост частоты визитов
+    # Передать: startDate, endDate, numberTransactions, maxChurnIndex, maxShareTransactionsDiscount, acceptableMarginShare
+    # Вернет: customerId, startDate, endDate, numberTransactions, offerGroup, maxDiscountDepth
+    formationOfIncreasingFrequencyOfVisits(suggestionInput: SuggestionInput): [Suggestion]!
+
+    # Формирование персональных предложений, ориентированных на кросс-продажи
+    # Передать: numberGroups, maxChurnIndex, maxConsumptionStabilityIndex, maxSkuSharePercentage, acceptableMarginShare
+    # Вернет: customerId, skuOffers, maxDiscountDepth
+    formationOfOffersFocusedOnCrossSelling(suggestionInput: SuggestionInput): [Suggestion]
+}
+
+type Suggestion {
+    # Идентификатор клиента
+    customerId: Int!
+    # Целевое значение среднего чека
+    requiredCheckMeasure: Float
+    # Группа предложения
+    offerGroup: String
+    # Дата начала периода
+    startDate: String
+    # Дата окончания период
+    endDate: String
+    # Целевое количество транзакций
+    numberTransactions: Int
+    # SKU предложения
+    skuOffers: String
+    # Максимальная глубина скидки
+    maxDiscountDepth: Float!
+}
+
+input SuggestionInput {
+    # Метод расчета среднего чека (1 - за период, 2 - за количество)
+    workMode: Int
+    # Дата начала периода
+    startDate: String
+    # Дата окончания период
+    endDate: String
+    # Количество транзакций
+    numberTransactions: Int
+    # Коэффициент увеличения среднего чека
+    coefficientIncrease: Float
+    # Максимальный индекс оттока
+    maxChurnIndex: Float
+    # Максимальная доля транзакций со скидкой (в процентах)
+    maxShareTransactionsDiscount: Float
+    # Допустимая доля маржи (в процентах)
+    acceptableMarginShare: Float
+    # Максимальная доля SKU (в процентах)
+    maxSkuSharePercentage: Float
+    # Количество групп
+    numberGroups: Int
+    # Максимальный индекс стабильности потребления
+    maxConsumptionStabilityIndex: Float
+}

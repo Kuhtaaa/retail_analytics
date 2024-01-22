@@ -1,0 +1,37 @@
+extend type Query {
+    transaction: TransactionQueries
+}
+
+extend type Mutation {
+    transaction: TransactionMutations
+}
+
+type TransactionQueries {
+    getAllTransactions : [Transaction!]!
+    getTransactionById (id : String) :  Transaction!
+    getTransactionEntitiesBetweenDate (
+        dateTimeBegin : String,
+        dateTimeEng : String
+    ) : [Transaction]!
+
+
+}
+
+type TransactionMutations {
+    createTransaction(
+        customerCardId : String,
+        transactionSumm : String,
+        transactionDatetime : String,
+        transactionStoreId : String
+    ) : Boolean
+
+    updateTransaction(
+        transactionId : String,
+        customerCardId : String,
+        transactionSumm : String,
+        transactionDatetime : String,
+        transactionStoreId : String
+    ) : Boolean
+
+    deleteTransaction(transactionId : String) : Boolean
+}

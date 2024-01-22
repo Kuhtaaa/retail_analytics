@@ -1,0 +1,30 @@
+extend type Query {
+    store: StoreQueries
+}
+
+extend type Mutation {
+    store: StoreMutations
+}
+
+type StoreQueries {
+    getAllStores: [Store!]!
+    getStoreById(transactionStoreId: String, skuId: String): Store!
+}
+
+type StoreMutations {
+    createStore(
+        transactionStoreId : String,
+        skuId : String,
+        skuPurchasePrice : String,
+        skuRetailPrice : String
+    ) : Boolean
+
+    updateStore(
+        transactionStoreId : String,
+        skuId : String,
+        skuPurchasePrice : String,
+        skuRetailPrice : String
+    ) : Boolean
+
+    deleteStore(transactionStoreId: String, skuId: String) : Boolean
+}

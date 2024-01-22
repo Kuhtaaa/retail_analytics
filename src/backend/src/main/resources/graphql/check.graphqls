@@ -1,0 +1,34 @@
+extend type Query {
+    check: CheckQueries
+}
+
+extend type Mutation {
+    check: CheckMutations
+}
+
+type CheckQueries {
+    getAllChecks: [Check!]!
+    getCheckById(transactionId: String, skuId: String): Check!
+}
+
+type CheckMutations {
+    createCheck(
+            transactionId : String
+            skuId : String
+            skuAmount : String
+            skuSumm : String
+            skuSummPaid : String
+            skuDiscount : String
+        ) : Boolean
+
+    updateCheck(
+        transactionId : String
+        skuId : String
+        skuAmount : String
+        skuSumm : String
+        skuSummPaid : String
+        skuDiscount : String
+    ) : Boolean
+
+    deleteCheck(transactionId: String, skuId: String): Boolean
+}

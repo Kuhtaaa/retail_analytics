@@ -1,0 +1,19 @@
+schema:
+  - "http://localhost:8080"
+overwrite: true
+documents: graphql/*.graphqls
+config:
+  strict: true
+  skipTypename: false
+  immutableTypes: true
+  typesPrefix: I
+
+  withHooks: true
+generates:
+  './src/__generated__/index.tsx':
+    documents:
+      - src/apollo/mutations/**/*.{ts,tsx}
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-react-apollo'
